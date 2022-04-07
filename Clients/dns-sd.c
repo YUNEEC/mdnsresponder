@@ -58,6 +58,7 @@
 //#define TEST_NEW_CLIENTSTUB 1
 
 #include <ctype.h>
+#include <stdarg.h>         // For va_list
 #include <stdio.h>          // For stdout, stderr
 #include <stdlib.h>         // For exit()
 #include <string.h>         // For strlen(), strcpy()
@@ -909,6 +910,14 @@ static void DNSSD_API reg_reply(DNSServiceRef sdref, const DNSServiceFlags flags
 
     if (!(flags & kDNSServiceFlagsMoreComing)) fflush(stdout);
 }
+
+/* Macros for min/max.  */
+#ifndef MIN
+# define MIN(a,b) (((a)<(b))?(a):(b))
+#endif
+#ifndef MAX
+# define MAX(a,b) (((a)>(b))?(a):(b))
+#endif
 
 static int snprintf_safe(char *str, size_t size, const char *format, ...)
 {
